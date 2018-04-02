@@ -97,9 +97,9 @@ import javax.net.ssl.SSLSocketFactory;
 public class NetworkDiagnostics {
     private static final String TAG = "NetworkDiagnostics";
 
-    private static final InetAddress TEST_DNS4 = NetworkUtils.numericToInetAddress("1.1.1.1");
+    private static final InetAddress TEST_DNS4 = NetworkUtils.numericToInetAddress("1.0.0.1");
     private static final InetAddress TEST_DNS6 = NetworkUtils.numericToInetAddress(
-            "2606:4700:4700::1111");
+            "2606:4700:4700::1001");
 
     // For brevity elsewhere.
     private static final long now() {
