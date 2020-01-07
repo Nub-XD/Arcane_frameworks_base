@@ -152,6 +152,9 @@ public final class ClockManager {
         addBuiltinClock(() -> new AndroidSClockController(res, layoutInflater, colorExtractor));
         addBuiltinClock(() -> new DefaultClockController(res, layoutInflater, colorExtractor));
         addBuiltinClock(() -> new OOSClockController(res, layoutInflater, colorExtractor));
+        addBuiltinClock(() -> new DefaultBoldClockController(res, layoutInflater, colorExtractor));
+        addBuiltinClock(() -> new SamsungClockController(res, layoutInflater, colorExtractor));
+        addBuiltinClock(() -> new SamsungBoldClockController(res, layoutInflater, colorExtractor));
         addBuiltinClock(() -> new IDEClockController(res, layoutInflater, colorExtractor, context));
         addBuiltinClock(() -> new SammyClockController(res, layoutInflater, colorExtractor));
         addBuiltinClock(() -> new Fluidv2ClockController(res, layoutInflater, colorExtractor));
