@@ -233,4 +233,7 @@
     <!-- Screen off delay -->
     <integer name="config_screen_off_delay">0</integer>
 
+    <!-- Whether device has fingerprint on power button -->
+    <bool name="config_powerButtonFingerprint">false</bool>
+
 </resources>
