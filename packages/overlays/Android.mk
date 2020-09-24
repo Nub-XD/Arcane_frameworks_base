@@ -34,6 +34,7 @@ LOCAL_REQUIRED_MODULES := \
 	AccentColorTealOverlay \
 	AccentColorOPRedOverlay \
 	AccentColorOrangeOverlay \
+        AccentColoriOSBlueOverlay \
 	DisplayCutoutEmulationCornerOverlay \
 	DisplayCutoutEmulationDoubleOverlay \
     DisplayCutoutEmulationHoleOverlay \
