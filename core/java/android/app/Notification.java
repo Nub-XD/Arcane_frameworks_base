@@ -5281,7 +5281,7 @@ public class Notification implements Parcelable
             if (isColorized(p)) {
                 setTextViewColorPrimary(contentView, R.id.app_name_text, p);
             } else {
-                contentView.setTextColor(R.id.app_name_text, getSecondaryTextColor(p));
+                contentView.setTextColor(R.id.app_name_text, resolveAppNameTinting(p));
             }
         }
 
@@ -5903,6 +5903,10 @@ public class Notification implements Parcelable
             }
             mCachedContrastColorIsFor = rawColor;
             return mCachedContrastColor = color;
+        }
+
+        int resolveAppNameTinting(StandardTemplateParams p) {
+            return resolveContrastColor(p);
         }
 
         /**
