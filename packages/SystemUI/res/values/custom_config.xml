@@ -21,4 +21,7 @@
 
     <!-- Allow devices to hide ringer button above volume slider -->
     <bool name="config_hideRingerButton">false</bool>
+    
+    <!-- If not zero, limits the internal screen recorder's framerate to the set value. -->
+    <integer name="config_screenRecorderMaxFramerate">0</integer>
 </resources>
