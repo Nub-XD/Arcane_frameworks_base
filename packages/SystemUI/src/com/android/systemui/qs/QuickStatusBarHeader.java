@@ -324,6 +324,9 @@ public class QuickStatusBarHeader extends RelativeLayout implements
         mDateView = findViewById(R.id.date);
         mSpace = findViewById(R.id.space);
 
+        // We have nuked the black backgroud so set header icons text color accordingly
+        mClockView.setTextColor(Utils.getColorAttr(getContext(), R.attr.wallpaperTextColor));
+
         // Tint for the battery icons are handled in setupHost()
         mBatteryRemainingIcon = findViewById(R.id.batteryRemainingIcon);
         // QS will always show the estimate, and BatteryMeterView handles the case where

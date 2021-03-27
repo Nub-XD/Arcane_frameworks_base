@@ -33,6 +33,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
+import com.android.settingslib.Utils;
 import com.android.systemui.R;
 import com.android.systemui.plugins.DarkIconDispatcher;
 import com.android.systemui.plugins.DarkIconDispatcher.DarkReceiver;
@@ -283,7 +284,8 @@ public class NetworkTraffic extends TextView {
         final Resources resources = getResources();
         mTxtSizeStatusbar = resources.getDimensionPixelSize(R.dimen.net_traffic_status_bar_text_size);
         mTxtImgPadding = resources.getDimensionPixelSize(R.dimen.net_traffic_txt_img_padding);
-        mTintColor = resources.getColor(android.R.color.white);
+        mTintColor = Utils.getColorAttrDefaultColor(getContext(),
+                R.attr.wallpaperTextColor);
         setTextColor(mTintColor);
 
         mNetworkManagementService = INetworkManagementService.Stub.asInterface(
