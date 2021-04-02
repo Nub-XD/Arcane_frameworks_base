@@ -25,4 +25,8 @@
 
     <!-- Height of a the shelf with the notification icons -->
     <dimen name="notification_shelf_height">48dp</dimen>
+
+    <!-- Tag clock size -->
+    <dimen name="btlg_tag_width">300dp</dimen>
+    <dimen name="btlg_tag_height">165dp</dimen>
 </resources>

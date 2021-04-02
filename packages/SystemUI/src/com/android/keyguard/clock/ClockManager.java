@@ -159,6 +159,11 @@ public final class ClockManager {
         addBuiltinClock(() -> new SammyClockController(res, layoutInflater, colorExtractor));
         addBuiltinClock(() -> new Fluidv2ClockController(res, layoutInflater, colorExtractor));
         addBuiltinClock(() -> new OctaviDigitalClockController(res, layoutInflater, colorExtractor));
+        addBuiltinClock(() -> new IDEJavaClockController(res, layoutInflater, colorExtractor));
+        addBuiltinClock(() -> new ClockertinoClockController(res, layoutInflater, colorExtractor));
+        addBuiltinClock(() -> new GradientFireClockController(res, layoutInflater, colorExtractor));
+        addBuiltinClock(() -> new StickerTagClockController(res, layoutInflater, colorExtractor));
+        
         // Store the size of the display for generation of clock preview.
         DisplayMetrics dm = res.getDisplayMetrics();
         mWidth = dm.widthPixels;
