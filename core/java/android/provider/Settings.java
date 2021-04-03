@@ -5797,6 +5797,13 @@ public final class Settings {
         }
     }
 
+        /**
+         * Some creation simillar to samsung OneUI
+         * @hide
+         */
+        public static final String SETTINGS_SPACER = "settings_spacer";
+
+
     /**
      * Secure system settings, containing system preferences that applications
      * can read but are not allowed to write.  These are for preferences that
