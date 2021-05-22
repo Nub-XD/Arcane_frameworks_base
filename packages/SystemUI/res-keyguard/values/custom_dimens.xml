@@ -24,5 +24,5 @@
     <dimen name="oos_clock_left_padding">20dp</dimen>
 
     <!-- Height of a the shelf with the notification icons -->
-    <dimen name="notification_shelf_height">40dp</dimen>
+    <dimen name="notification_shelf_height">48dp</dimen>
 </resources>
