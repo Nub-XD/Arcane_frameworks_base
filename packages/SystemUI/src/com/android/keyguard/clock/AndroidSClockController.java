@@ -1,5 +1,7 @@
 /*
  * Copyright (C) 2019 The Android Open Source Project
+ * Copyright (C) 2021 The P-404 Project
+ * Copyright (C) 2021 The DotOS Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -82,18 +84,15 @@ import java.util.List;
 import java.util.Locale;
 import java.util.TimeZone;
 
-import static com.android.systemui.statusbar.phone
-        .KeyguardClockPositionAlgorithm.CLOCK_USE_DEFAULT_Y;
-
 /**
  * Plugin for the default clock face used only to provide a preview.
  */
 public class AndroidSClockController implements ClockPlugin {
 
-    private final float mTextSizeNormal = 38f;
+    private final float mTextSizeNormal = 48f;
     private final float mTextSizeBig = 72f;
-    private final float mSliceTextSize = 24f;
-    private final float mTitleTextSize = 28f;
+    private final float mSliceTextSize = 20f;
+    private final float mTitleTextSize = 24f;
     private boolean mHasVisibleNotification = false;
     private boolean mClockState = false;
     private float clockDividY = 6f;
@@ -187,8 +186,8 @@ public class AndroidSClockController implements ClockPlugin {
         mContainerBig = viewBig.findViewById(R.id.clock_view);
         mContainerSet.clone(mContainer);
         mContainerSetBig.clone(mContainerBig);
-        mClock.setFormat12Hour("hh\nmm");
-        mClock.setFormat24Hour("kk\nmm");
+        mClock.setFormat12Hour("hh:mm");
+        mClock.setFormat24Hour("kk:mm");
 
         mTitle = mView.findViewById(R.id.title);
         mRow = mView.findViewById(R.id.row);
@@ -203,6 +202,7 @@ public class AndroidSClockController implements ClockPlugin {
                 WallpaperManager.FLAG_LOCK);
         mPalette.setColorPalette(colors.supportsDarkText(), colors.getColorPalette());
         mSliceTypeface = mClock.getTypeface();
+        setSlice(mSlice);
     }
 
     @Override
@@ -224,7 +224,7 @@ public class AndroidSClockController implements ClockPlugin {
 
     @Override
     public Bitmap getThumbnail() {
-        return BitmapFactory.decodeResource(mResources, R.drawable.default_thumbnail);
+        return BitmapFactory.decodeResource(mResources, R.drawable.default_s_thumbnail);
     }
 
     @Override
@@ -244,7 +244,7 @@ public class AndroidSClockController implements ClockPlugin {
 
         int color = getTextColor();
         previewClock.setTextColor(color);
-        previewTitle.setTextColor(color);
+        previewTitle.setTextColor(mTextColor);
 
         return mRenderer.createPreview(previewView, width, height);
     }
@@ -302,7 +302,7 @@ public class AndroidSClockController implements ClockPlugin {
         }
 
         final int subItemsCount = subItems.size();
-        final int blendedColor = getTextColor();
+        final int blendedColor = mTextColor;
         final int startIndex = mHasHeader ? 1 : 0; // First item is header; skip it
         mRow.setVisibility(subItemsCount > 0 ? View.VISIBLE : View.GONE);
 
@@ -417,52 +417,51 @@ public class AndroidSClockController implements ClockPlugin {
         if (!mHasVisibleNotification) {
             if (!mClockState) {
                 mClock.animate()
-                            .setUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-                                @Override
-                                public void onAnimationUpdate(ValueAnimator animation) {
-                                    if (mClock != null) {
-                                        mClock.setTextSize((float) Converter.dpToPx(mContext, (int) (mTextSizeNormal + (differenceSize * animation.getAnimatedFraction()))));
-                                        mClock.requestLayout();
-                                    }
-                                }
-                            })
-                            .setDuration(550)
-                            .withStartAction(() -> {
-                                TransitionManager.beginDelayedTransition(mContainer,
-                                new Fade().setDuration(550).addTarget(mContainer));
-                                mContainerSetBig.applyTo(mContainer);
-                            })
-                            .withEndAction(() -> {
-                                mClockState = true;
-                                setSlice(mSlice);
-                            })
-                            .start();
+                        .setUpdateListener(animation -> {
+                            if (mClock != null) {
+                                mClock.setTextSize((float) Converter.dpToPx(mContext, (int) (mTextSizeNormal + (differenceSize * animation.getAnimatedFraction()))));
+                                mClock.requestLayout();
+                            }
+                        })
+                        .setDuration(550)
+                        .withStartAction(() -> {
+                            TransitionManager.beginDelayedTransition(mContainer,
+                                    new Fade().setDuration(550).addTarget(mContainer));
+                            mClock.setFormat12Hour("hh\nmm");
+                            mClock.setFormat24Hour("kk\nmm");
+                            mContainerSetBig.applyTo(mContainer);
+                        })
+                        .withEndAction(() -> {
+                            mClockState = true;
+                            setSlice(mSlice);
+                        })
+                        .start();
             }
         } else {
             if (mClockState) {
                 mClock.animate()
-                            .setUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-                                @Override
-                                public void onAnimationUpdate(ValueAnimator animation) {
-                                    if (mClock != null) {
-                                        mClock.setTextSize((float) Converter.dpToPx(mContext, (int) (mTextSizeNormal + (differenceSize * (1f - animation.getAnimatedFraction())))));
-                                        mClock.requestLayout();
-                                    }
-                                }
-                            })
-                            .setDuration(550)
-                            .withStartAction(() -> {
-                                TransitionManager.beginDelayedTransition(mContainer,
-                                new Fade().setDuration(550).addTarget(mContainer));
-                                mContainerSet.applyTo(mContainer);
-                            })
-                            .withEndAction(() -> {
-                                mClockState = false;
-                                setSlice(mSlice);
-                            })
-                            .start();
+                        .setUpdateListener(animation -> {
+                            if (mClock != null) {
+                                mClock.setTextSize((float) Converter.dpToPx(mContext, (int) ((differenceSize * animation.getAnimatedFraction()))));
+                                mClock.requestLayout();
+                            }
+                        })
+                        .setDuration(550)
+                        .withStartAction(() -> {
+                            TransitionManager.beginDelayedTransition(mContainer,
+                                    new Fade().setDuration(550).addTarget(mContainer));
+                            mClock.setFormat12Hour("hh:mm");
+                            mClock.setFormat24Hour("kk:mm");
+                            mContainerSet.applyTo(mContainer);
+                        })
+                        .withEndAction(() -> {
+                            mClockState = false;
+                            setSlice(mSlice);
+                        })
+                        .start();
             }
         }
+        updateTextColors();
     }
 
     @Override
@@ -496,16 +495,16 @@ public class AndroidSClockController implements ClockPlugin {
 
     private void updateTextColors() {
         int color = getTextColor();
-        mClock.setTextColor(color);
-        mTitle.setTextColor(color);
+        mClock.setTextColor(mHasVisibleNotification ? mTextColor : color);
+        mTitle.setTextColor(mTextColor);
         for (int i = 0; i < mRow.getChildCount(); i++) {
             View child = mRow.getChildAt(i);
             if (child instanceof KeyguardSliceTextView)
-                ((KeyguardSliceTextView) child).setTextColor(color);
+                ((KeyguardSliceTextView) child).setTextColor(mTextColor);
         }
     }
 
     int getTextColor() {
-        return ColorUtils.blendARGB(mPalette != null ? mPalette.getPrimaryColor() : mTextColor, Color.WHITE, mDarkAmount > 0.9f ? mDarkAmount : 0.3f);
+        return ColorUtils.blendARGB(mPalette != null ? mPalette.getPrimaryColor() : mTextColor, Color.WHITE, mDarkAmount > 0.9f ? mDarkAmount : 0.2f);
     }
 }
