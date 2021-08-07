@@ -91,8 +91,8 @@ public class AndroidSClockController implements ClockPlugin {
 
     private final float mTextSizeNormal = 48f;
     private final float mTextSizeBig = 72f;
-    private final float mSliceTextSize = 20f;
-    private final float mTitleTextSize = 24f;
+    private final float mSliceTextSize = 18f;
+    private final float mTitleTextSize = 20f;
     private boolean mHasVisibleNotification = false;
     private boolean mClockState = false;
     private float clockDividY = 6f;
@@ -152,6 +152,8 @@ public class AndroidSClockController implements ClockPlugin {
     private int mRowHeight = 0;
 
     private Typeface mSliceTypeface;
+    private Typeface mRegularTypeface;
+    private Typeface mThinTypeface;
 
     /**
      * Time and calendars to check the date
@@ -172,6 +174,8 @@ public class AndroidSClockController implements ClockPlugin {
         mContext = mLayoutInflater.getContext();
         mColorExtractor = colorExtractor;
         mClickActions = new HashMap<>();
+        mRegularTypeface = res.getFont(R.font.googlesansregular);
+        mThinTypeface = res.getFont(R.font.googlesansthin);
         mRowPadding = mResources.getDimensionPixelSize(R.dimen.subtitle_clock_padding);
         mRowWithHeaderPadding = mResources.getDimensionPixelSize(R.dimen.header_subtitle_padding);
     }
@@ -188,6 +192,7 @@ public class AndroidSClockController implements ClockPlugin {
         mContainerSetBig.clone(mContainerBig);
         mClock.setFormat12Hour("hh:mm");
         mClock.setFormat24Hour("kk:mm");
+        mClock.setTypeface(mRegularTypeface);
 
         mTitle = mView.findViewById(R.id.title);
         mRow = mView.findViewById(R.id.row);
@@ -238,13 +243,12 @@ public class AndroidSClockController implements ClockPlugin {
         previewClock.setFormat24Hour("kk\nmm");
         previewTitle.setText(new SimpleDateFormat("EEE, MMM d", Locale.getDefault()).format(new Date()));
 
-        ColorExtractor.GradientColors colors = mColorExtractor.getColors(
-                WallpaperManager.FLAG_LOCK);
+        ColorExtractor.GradientColors colors = mColorExtractor.getColors(WallpaperManager.FLAG_LOCK);
         mPalette.setColorPalette(colors.supportsDarkText(), colors.getColorPalette());
 
         int color = getTextColor();
         previewClock.setTextColor(color);
-        previewTitle.setTextColor(mTextColor);
+        previewTitle.setTextColor(Utils.getColorAttrDefaultColor(previewView.getContext(), R.attr.wallpaperTextColor));
 
         return mRenderer.createPreview(previewView, width, height);
     }
@@ -253,6 +257,7 @@ public class AndroidSClockController implements ClockPlugin {
     public View getView() {
         if (mView == null) {
             createViews();
+            animate();
         }
         return mView;
     }
@@ -395,6 +400,7 @@ public class AndroidSClockController implements ClockPlugin {
             mRowHeight = mRow.getHeight() + (mHasHeader ? mTitle.getHeight() : 0);
             if (mRow.getChildCount() != 0) {
                 mContainerSetBig.setMargin(mClock.getId(), ConstraintSet.TOP, mRowHeight);
+                mClock.requestLayout();
             }
         }
     };
@@ -429,6 +435,8 @@ public class AndroidSClockController implements ClockPlugin {
                                     new Fade().setDuration(550).addTarget(mContainer));
                             mClock.setFormat12Hour("hh\nmm");
                             mClock.setFormat24Hour("kk\nmm");
+                            if (mDarkAmount < 0.7)
+                                mClock.setTypeface(mRegularTypeface);
                             mContainerSetBig.applyTo(mContainer);
                         })
                         .withEndAction(() -> {
@@ -452,6 +460,7 @@ public class AndroidSClockController implements ClockPlugin {
                                     new Fade().setDuration(550).addTarget(mContainer));
                             mClock.setFormat12Hour("hh:mm");
                             mClock.setFormat24Hour("kk:mm");
+                            mClock.setTypeface(mThinTypeface);
                             mContainerSet.applyTo(mContainer);
                         })
                         .withEndAction(() -> {
@@ -478,6 +487,12 @@ public class AndroidSClockController implements ClockPlugin {
             child.setTextSize((isDateSlice ? mTitleTextSize : mSliceTextSize) - (2.5f * darkAmount));
         }
         mTitle.setTextSize(mTitleTextSize - (2.5f * darkAmount));
+        if (!mHasVisibleNotification) {
+            if (darkAmount >= 0.7)
+                mClock.setTypeface(mThinTypeface);
+            else
+                mClock.setTypeface(mRegularTypeface);
+        }
         mRow.setDarkAmount(darkAmount);
         mTitle.requestLayout();
         mRow.requestLayout();
