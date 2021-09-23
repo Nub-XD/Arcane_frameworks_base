@@ -524,6 +524,7 @@ public class QuickStatusBarHeader extends RelativeLayout implements
         if (mExpanded == expanded) return;
         mExpanded = expanded;
         mHeaderQsPanel.setExpanded(expanded);
+        mClockView.setVisibility(View.INVISIBLE);
         updateEverything();
     }
 
