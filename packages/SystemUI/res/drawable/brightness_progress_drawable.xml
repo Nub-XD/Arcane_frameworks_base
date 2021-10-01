@@ -26,7 +26,7 @@
             <selector>
                 <item android:state_pressed="true">
                     <shape android:tint="?android:attr/colorAccent" android:shape="rectangle">
-                        <size android:height="30.0dip" />
+                        <size android:height="15.0dip" />
                         <stroke android:width="1.0dip" android:color="#ffffffff" />
                         <solid android:color="#ffffffff" />
                         <corners android:radius="15.0dip" />
@@ -34,7 +34,7 @@
                 </item>
                 <item android:state_pressed="false">
                     <shape android:tint="?android:attr/colorAccent" android:shape="rectangle">
-                        <size android:height="30.0dip" />
+                        <size android:height="15.0dip" />
                         <solid android:color="@android:color/white" />
                         <corners android:radius="15.0dip" />
                     </shape>
