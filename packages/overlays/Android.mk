@@ -31,6 +31,7 @@ LOCAL_REQUIRED_MODULES := \
 	AccentColorAquamarineOverlay \
 	AccentColorTangerineOverlay \
 	AccentColorPixelBlueOverlay \
+	AccentColorOPRedOverlay \
 	DisplayCutoutEmulationCornerOverlay \
 	DisplayCutoutEmulationDoubleOverlay \
     DisplayCutoutEmulationHoleOverlay \
