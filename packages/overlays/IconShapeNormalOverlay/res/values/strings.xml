@@ -15,6 +15,6 @@
   -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <!-- Tapered rect icon overlay -->
-    <string name="icon_shape_normal_overlay" translatable="false">AOSP</string>
+    <string name="icon_shape_normal_overlay" translatable="false">AOSP default - not Rounded UI</string>
 
 </resources>
