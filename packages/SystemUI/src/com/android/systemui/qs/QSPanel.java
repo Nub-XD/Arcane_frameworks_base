@@ -1096,8 +1096,8 @@ public class QSPanel extends LinearLayout implements Tunable, Callback, Brightne
      */
     protected void updateMediaHostContentMargins() {
         if (mUsingMediaPlayer) {
-            int marginStart = 10;
-            int marginEnd = 10;
+            int marginStart = 12;
+            int marginEnd = 12;
             if (mUsingHorizontalLayout) {
                 marginEnd = mContentMarginEnd;
             }
