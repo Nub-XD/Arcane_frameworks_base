@@ -21,10 +21,24 @@
     <string name="config_icon_mask" translatable="false">"M55,0 C25,0 0,25 0,50 0,78 28,100 55,100 85,100 100,85 100,58 100,30 86,0 55,0 Z"</string>
     <!-- Flag indicating whether round icons should be parsed from the application manifest. -->
     <bool name="config_useRoundIcon">false</bool>
-    <!-- Corner radius of system dialogs -->
-    <dimen name="config_dialogCornerRadius">8dp</dimen>
+    <!-- ArcaneOS Rounded UI -->
+    <dimen name="config_dialogCornerRadius">28.0dip</dimen>
+    <dimen name="config_buttonCornerRadius">32.0dip</dimen>
+    <dimen name="config_progressBarCornerRadius">1000.0dip</dimen>
+    <dimen name="control_corner_material">32.0dip</dimen>
+    <dimen name="progress_bar_corner_material">32.0dip</dimen>
+    <dimen name="subtitle_corner_radius">32.0dip</dimen>
+    <dimen name="subtitle_shadow_radius">32.0dip</dimen>
+    <dimen name="dialog_corner_radius">28.0dip</dimen>
+    <dimen name="chooser_corner_radius">32.0dip</dimen>
+    <dimen name="default_magnifier_corner_radius">32.0dip</dimen>
+    <dimen name="tooltip_corner_radius">32.0dip</dimen>
+
     <!-- Corner radius for bottom sheet system dialogs -->
-    <dimen name="config_bottomDialogCornerRadius">16dp</dimen>
+    <dimen name="config_bottomDialogCornerRadius">32.0dip</dimen>
+    
+    <!-- Corner radius of search bars and cards -->
+    <dimen name="config_cardCornerRadius">32.0dip</dimen>
 
 </resources>
 
