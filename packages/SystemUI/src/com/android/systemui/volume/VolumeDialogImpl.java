@@ -1125,7 +1125,6 @@ public class VolumeDialogImpl implements VolumeDialog,
                 return;
             }
 
-
             boolean isZenMuted = mState.zenMode == Global.ZEN_MODE_ALARMS
                     || mState.zenMode == Global.ZEN_MODE_NO_INTERRUPTIONS
                     || (mState.zenMode == Global.ZEN_MODE_IMPORTANT_INTERRUPTIONS
@@ -1143,7 +1142,6 @@ public class VolumeDialogImpl implements VolumeDialog,
                     mRingerIcon.setTag(Events.ICON_STATE_MUTE);
                     addAccessibilityDescription(mRingerIcon, RINGER_MODE_SILENT,
                             mContext.getString(R.string.volume_ringer_hint_unmute));
-                    mRinger.setBackgroundTintList(null);
                     break;
                 case AudioManager.RINGER_MODE_NORMAL:
                 default:
@@ -1213,7 +1211,7 @@ public class VolumeDialogImpl implements VolumeDialog,
             mRingerIcon.setEnabled(enable);
         }
         if (mZenIcon != null) {
-            mZenIcon.setVisibility(View.GONE);
+            mZenIcon.setVisibility(enable ? GONE : VISIBLE);
         }
     }
 
@@ -1425,13 +1423,18 @@ public class VolumeDialogImpl implements VolumeDialog,
             row.slider.requestFocus();
         }
         boolean useActiveColoring = isActive && row.slider.isEnabled();
-        final ColorStateList tint = Utils.getColorAccent(mContext);
-        final int alpha= getAlphaAttr(android.R.attr.secondaryContentAlpha);
+        final ColorStateList tint = useActiveColoring
+                ? Utils.getColorAccent(mContext)
+                : Utils.getColorAttr(mContext, android.R.attr.colorForeground);
+        final int alpha = useActiveColoring
+                ? Color.alpha(tint.getDefaultColor())
+                : getAlphaAttr(android.R.attr.secondaryContentAlpha);
         if (tint == row.cachedTint && mExpanded) return;
         row.slider.setProgressTintList(tint);
         row.slider.setThumbTintList(tint);
         row.slider.setProgressBackgroundTintList(tint);
         row.slider.setAlpha(((float) alpha) / 255);
+        row.icon.setImageTintList(tint);
         row.icon.setImageAlpha(alpha);
         row.cachedTint = tint;
     }
@@ -1485,8 +1488,6 @@ public class VolumeDialogImpl implements VolumeDialog,
                 }
                 row.slider.setProgress(newProgress, true);
             }
-            ColorStateList mIconTint = Utils.getColorAccent(mContext);
-            row.icon.setImageTintList(mIconTint);
         }
     }
 
@@ -1701,8 +1702,6 @@ public class VolumeDialogImpl implements VolumeDialog,
                             userLevel);
                 }
             }
-            ColorStateList mIconTint = Utils.getColorAccent(mContext);
-            mRow.icon.setImageTintList(mIconTint);
         }
 
         @Override
