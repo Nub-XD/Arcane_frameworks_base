@@ -28,12 +28,12 @@ public class PixelPropsUtils {
     private static final String TAG = PixelPropsUtils.class.getSimpleName();
     private static final boolean DEBUG = false;
 
-    private static final Map<String, Object> propsToChange;
+    private static final Map<String, Object> propsToChangePixel5a;
     private static final Map<String, Object> propsToChangePixelXL;
     private static final Map<String, Object> propsToChangePixel2;
     private static final Map<String, Object> propsToChangePixel3XL;
 
-    private static final String[] packagesToChange = {
+    private static final String[] packagesToChangePixel5a = {
             "com.android.vending",
             "com.breel.wallpapers20",
             "com.google.android.apps.customization.pixel",
@@ -72,13 +72,13 @@ public class PixelPropsUtils {
     };
 
     static {
-        propsToChange = new HashMap<>();
-        propsToChange.put("BRAND", "google");
-        propsToChange.put("MANUFACTURER", "Google");
-        propsToChange.put("DEVICE", "redfin");
-        propsToChange.put("PRODUCT", "redfin");
-        propsToChange.put("MODEL", "Pixel 5");
-        propsToChange.put("FINGERPRINT", "google/redfin/redfin:11/RQ3A.210905.001/7511028:user/release-keys");
+        propsToChangePixel5a = new HashMap<>();
+        propsToChangePixel5a.put("BRAND", "google");
+        propsToChangePixel5a.put("MANUFACTURER", "Google");
+        propsToChangePixel5a.put("DEVICE", "barbet");
+        propsToChangePixel5a.put("PRODUCT", "barbet");
+        propsToChangePixel5a.put("MODEL", "Pixel 5a");
+        propsToChangePixel5a.put("FINGERPRINT", "google/barbet/barbet:11/RD2A.211001.002/7644766:user/release-keys");
         propsToChangePixelXL = new HashMap<>();
         propsToChangePixelXL.put("BRAND", "google");
         propsToChangePixelXL.put("MANUFACTURER", "Google");
@@ -106,11 +106,11 @@ public class PixelPropsUtils {
         if (packageName == null){
             return;
         }
-        if (Arrays.asList(packagesToChange).contains(packageName)){
+        if (Arrays.asList(packagesToChangePixel5a).contains(packageName)){
             if (DEBUG){
                 Log.d(TAG, "Defining props for: " + packageName);
             }
-            for (Map.Entry<String, Object> prop : propsToChange.entrySet()) {
+            for (Map.Entry<String, Object> prop : propsToChangePixel5a.entrySet()) {
                 String key = prop.getKey();
                 Object value = prop.getValue();
                 // Don't set model if gms
