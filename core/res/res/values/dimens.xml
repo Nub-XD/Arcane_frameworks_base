@@ -40,11 +40,11 @@
          Max((status bar content height + waterfall top size), top cutout size) -->
     <dimen name="status_bar_height_landscape">@dimen/status_bar_height_portrait</dimen>
     <!-- Height of area above QQS where battery/time go -->
-    <dimen name="quick_qs_offset_height">48dp</dimen>
+    <dimen name="quick_qs_offset_height">60dp</dimen>
     <!-- Total height of QQS (quick_qs_offset_height + 128) -->
-    <dimen name="quick_qs_total_height">178dp</dimen>
+    <dimen name="quick_qs_total_height">188dp</dimen>
     <!-- Total height of QQS with two rows to fit media player (quick_qs_offset_height + 176) -->
-    <dimen name="quick_qs_total_height_with_media">224dp</dimen>
+    <dimen name="quick_qs_total_height_with_media">236dp</dimen>
     <!-- Height of the bottom navigation / system bar. -->
     <dimen name="navigation_bar_height">48dp</dimen>
     <!-- Height of the bottom navigation bar in portrait; often the same as @dimen/navigation_bar_height -->
@@ -354,11 +354,11 @@
     <dimen name="leanback_alert_dialog_horizontal_margin">54dip</dimen>
 
     <!-- Default height of an action bar. -->
-    <dimen name="action_bar_default_height">82dip</dimen>
+    <dimen name="action_bar_default_height">85dip</dimen>
     <!-- Vertical padding around action bar icons. -->
     <dimen name="action_bar_icon_vertical_padding">8dip</dimen>
     <!-- Text size for action bar titles -->
-    <dimen name="action_bar_title_text_size">18dp</dimen>
+    <dimen name="action_bar_title_text_size">21dp</dimen>
     <!-- Text size for action bar subtitles -->
     <dimen name="action_bar_subtitle_text_size">14dp</dimen>
     <!-- Top margin for action bar subtitles -->
