@@ -50,7 +50,7 @@
             android:layout_height="wrap_content"
             android:gravity="start|top"
             android:letterSpacing="0.02"
-            android:fontFamily="@*android:string/config_headlineFontFamily"
+            android:fontFamily="@*android:string/config_headlineFontFamilyMedium"
             android:fontWeight="200" 
             android:textColor="?attr/wallpaperTextColor"
             android:textSize="28dp"
