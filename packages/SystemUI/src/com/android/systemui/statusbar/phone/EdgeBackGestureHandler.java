@@ -171,8 +171,6 @@ public class EdgeBackGestureHandler extends CurrentUserTracker implements Displa
     private int mEdgeWidthRight;
     // The bottom gesture area height
     private float mBottomGestureHeight;
-    // Displaysize divider to check the edge height where touch down is allowed
-    private int mYDeadzoneDivider = 0;
     // The slop to distinguish between horizontal and vertical motion
     private float mTouchSlop;
     // Duration after which we consider the event as longpress.
@@ -296,8 +294,6 @@ public class EdgeBackGestureHandler extends CurrentUserTracker implements Displa
         mEdgeWidthRight = mGestureNavigationSettingsObserver.getRightSensitivity(res);
         mIsBackGestureAllowed =
                 !mGestureNavigationSettingsObserver.areNavigationButtonForcedVisible();
-
-        mYDeadzoneDivider = mGestureNavigationSettingsObserver.getDeadZoneMode();
 
         final DisplayMetrics dm = res.getDisplayMetrics();
         final float defaultGestureHeight = res.getDimension(
@@ -595,10 +591,6 @@ public class EdgeBackGestureHandler extends CurrentUserTracker implements Displa
         // mLogGesture = false.
         if (x > 2 * (mEdgeWidthLeft + mLeftInset)
                 && x < (mDisplaySize.x - 2 * (mEdgeWidthRight + mRightInset))) {
-            return false;
-        }
-
-        if (mYDeadzoneDivider != 0 && y < (mDisplaySize.y / mYDeadzoneDivider)) {
             return false;
         }
 
