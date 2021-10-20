@@ -38,4 +38,5 @@
     <!-- Corner radius of search bars and cards -->
     <dimen name="config_cardCornerRadius">8.0dip</dimen>
     
+    <dimen name="notification_side_paddings">8dp</dimen>
 </resources>
