@@ -5093,6 +5093,12 @@ public final class Settings {
                 "status_bar_show_battery_percent";
 
         /**
+         * Weather to show qs clock on left
+         * @hide
+         */
+        public static final String QSCLOCK_LEFT = "qsclock_left";
+
+        /**
          * Whether to control brightness from status bar
          * 0 = 0ff, 1 = on
          */
