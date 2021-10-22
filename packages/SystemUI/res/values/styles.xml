@@ -256,7 +256,7 @@
     <style name="TextAppearance.QS.OneUI">
         <item name="android:fontFamily">@*android:string/config_bodyFontFamily</item>
         <item name="android:textColor">?android:attr/textColorPrimary</item>
-        <item name="android:textSize">10sp</item>
+        <item name="android:textSize">12sp</item>
     </style>
     
     <style name="TextAppearance.DeviceManagementDialog">
