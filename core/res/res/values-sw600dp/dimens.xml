@@ -27,7 +27,7 @@
     <!-- Vertical padding around action bar icons. -->
     <dimen name="action_bar_icon_vertical_padding">4dip</dimen>
     <!-- Text size for action bar titles -->
-    <dimen name="action_bar_title_text_size">18dp</dimen>
+    <dimen name="action_bar_title_text_size">24dp</dimen>
     <!-- Text size for action bar subtitles -->
     <dimen name="action_bar_subtitle_text_size">14dp</dimen>
     <!-- Top margin for action bar subtitles -->
