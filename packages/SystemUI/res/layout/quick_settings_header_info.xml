@@ -46,7 +46,7 @@
             android:format12Hour="hh"
             android:format24Hour="kk"
             android:singleLine="true"
-            android:textSize="28dp" />
+            android:textSize="30dp" />
 
         <TextClock
             android:layout_width="wrap_content"
@@ -54,7 +54,7 @@
             android:format12Hour=":mm a"
             android:format24Hour=":mm"
             android:singleLine="true"
-            android:textSize="28dp" />
+            android:textSize="30dp" />
      </LinearLayout>
 
     <com.android.systemui.statusbar.policy.DateView
