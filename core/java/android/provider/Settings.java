@@ -5309,6 +5309,11 @@ public final class Settings {
          */
         public static final String FOD_GESTURE = "fod_gesture";
 
+	/**
+         * Arcane Idle Manager
+         */
+        public static final String ARCANE_IDLE_MANAGER = "arcane_idle_manager";
+        
         /**
          * IMPORTANT: If you add a new public settings you also have to add it to
          * PUBLIC_SETTINGS below. If the new setting is hidden you have to add

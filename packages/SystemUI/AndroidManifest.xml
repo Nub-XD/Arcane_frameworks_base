@@ -277,6 +277,13 @@
     <!-- Permission to make accessibility service access Bubbles -->
     <uses-permission android:name="android.permission.ADD_TRUSTED_DISPLAY" />
 
+    <!-- Permission needed for Arcane Idle Manager -->
+    <!-- Sync settings -->
+    <uses-permission android:name="android.permission.WRITE_SYNC_SETTINGS"/>
+    <uses-permission android:name="android.permission.READ_SYNC_SETTINGS"/>
+    <!-- Kill processes -->
+    <uses-permission android:name="android.permission.KILL_BACKGROUND_PROCESSES"/>
+
     <!-- Asus Long screenshot -->
     <uses-permission android:name="com.asus.stitchimage.permission.EXPORTED_FOR_ASUS_APPS"/>
 
